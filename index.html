@@ -1,4 +1,156 @@
 <!DOCTYPE html>
 <html>
-    <h1>hello wordhld</h1>
+        
+    <head>
+        <!-- SCRIPTS -->
+        <!-- JQuery -->
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <!-- D3 (because fuck jQuery)-->
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+
+
+        <!-- Title -->
+        <title>Rice Thresher Purity Test</title>
+        
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" href="http://d2jz71s5ipgn8z.cloudfront.net/20160524mylhvToIpZ/dist/img/favicons/apple-touch-icon-60x60.png">
+
+        <script type="text/javascript">
+            window.onload = function () { 
+                $.getJSON("data.json", function(json) {
+                    var count = 0;
+                    var site = d3.select("#Covid-19");
+                    jQuery.each(json, function(){
+                        jQuery.each(this, function(){
+                            count += 1;
+                            console.log(this.toString());
+                            var myText;
+                            // var myText=count.toString() + ".";
+                            if(count < 10){
+                                myText = "0" + count.toString() + ".";
+                            }
+                            else{
+                               myText = count.toString() + ".";
+                            }
+                            site.append("div")
+                                .style("display", "inline")
+                                .text(myText)
+                                .attr("class", "number")
+                            site.append("input")
+                                .attr("type", "checkbox")
+                                .attr("class", "sin")
+                                .attr("id", count);
+                            site.append("label")
+                                .attr("for", count)
+                                .text(this.toString());
+                            site.append("br");
+                        });
+                    });
+                    return site;
+                    // console.log(json); // this will show the info it in firebug console
+                    // console.log(count);
+                });
+            }
+        </script>
+
+        <!-- Style -->
+        <style>
+
+        input[type=checkbox], input[type=radio] {
+            vertical-align: middle;
+            position: relative;
+            bottom: 1px;
+        }
+
+        .number{
+            vertical-align: middle;
+        }
+            
+        html {
+            background-color: #e8f0f7;
+            background-image: url("duke.png");
+        }
+        
+        body {
+            text-align: center;
+        }
+        #list {
+            text-align: left;
+        }
+        h1 {
+            font-size: 300%;
+            font-weight: bold;
+            color: red;
+            padding:0px;
+            margin:0px;
+        }
+        
+        .button {
+            text-align: center;
+            width: 10%;
+            border-radius: 20px;
+            background-color: rgba(255, 119, 100, 0.3);
+            color: rgb(0, 0, 5);
+            position: relative;
+            left: 200px;
+        }
+
+        
+        </style>
+    </head>
+    
+    <body>
+        <p>
+            <p><img src="thresherOfficial.png" width="600" height="111"></p>
+            <div id="toHide">
+                <p><i> Everyone knows the original Rice Purity Test. But this year, thanks to the Covid-19 pandemic, <br />students at Duke and around the world have had a college experience unlike any other.<br/>This updated Rice Purity Test is meant to reflect the changed realities of student life.</i></p>
+                <p><strong>***Leaving this last part word for word*** <br/>Caution: This is not a bucket list. Completion of all items on this test will likely result in death.</strong></p>
+                <br />
+                Click on every item you have done. 
+                MPS stands for Member of the Preferred Sex.
+                </p>
+            <div id="list">
+                <ol id="Covid-19">
+                </ol>
+
+                <input class="button" id="submit" type="submit" value="Calculate My Score!">
+                <input class="button" id="reset" type="submit" value="Clear checkboxes">
+            </div>
+        </div> <!-- id = toHide -->
+        <div style="display: none;" id = "toShow">
+            <h2 id="test">Your score:</h2>
+            <h1 id="score"></h1>
+            <br/>
+            <input onclick="doRefresh()" class="button" id="goBack" type="submit" value="Round 2!">
+        </div> <!-- id = toShow -->
+        
+         <script>
+     
+        function doRefresh(){
+            location.reload();
+        }
+
+        // On click of the submit button: 
+        $('#submit').click(function() {
+            var mySins = d3.selectAll("input[type='checkbox']:checked").nodes();
+            var sins = mySins.length;
+            var purity = 100-sins;
+            // I don't have 100 questions atm. This should change.
+
+            // Shows the score in the h1
+            $('#score').html(purity);
+            
+            // Shows the score and hides the checks
+            $("#toShow").show();
+            $("#toHide").hide();
+        });
+        
+        // On click of the reset button: 
+        $('#reset').click(function() {
+            $('input:checkbox').removeAttr('checked');
+        });
+        </script>
+
+    </body>
 </html>
+ 
