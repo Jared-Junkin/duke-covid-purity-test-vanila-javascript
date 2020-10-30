@@ -11,6 +11,10 @@
 
         gtag('config', 'G-KZP2SHQXBG');
         gtag('event', 'page_view');
+        gtag('event', 'page_view', {
+    'event_callback': function() {
+      console.log('sent!')
+    }});
     </script>
 
         <!-- SCRIPTS -->
