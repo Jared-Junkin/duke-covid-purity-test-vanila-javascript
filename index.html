@@ -10,6 +10,7 @@
         gtag('js', new Date());
 
         gtag('config', 'G-KZP2SHQXBG');
+        gtag('event', 'page_view');
     </script>
 
         <!-- SCRIPTS -->
@@ -23,7 +24,7 @@
         <title>Rice Thresher Purity Test</title>
 
          <!-- Google Analytics -->
-         <script>
+         <!-- <script>
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -32,7 +33,7 @@
             ga('create', 'G-KZP2SHQXBG', 'auto');
             ga('send', 'pageview');
             ga('set', 'transport', 'beacon');
-        </script>
+        </script> -->
 
         
         <!-- Favicon -->
@@ -163,23 +164,23 @@
             // I don't have 100 questions atm. This should change.
 
             // more google analytics stuff
-            ga('send', {
-                hitType: 'event',
-                eventCategory: 'Score',
-                eventAction: 'Total',
-                eventLabel: purity.toString(),
-                eventValue: purity
-            });
+            // ga('send', {
+            //     hitType: 'event',
+            //     eventCategory: 'Score',
+            //     eventAction: 'Total',
+            //     eventLabel: purity.toString(),
+            //     eventValue: purity
+            // });
 
-            for (i = 1; i < 100; i++) {
-                ga('send', {
-                    hitType: 'event',
-                    eventCategory: 'Score',
-                    eventAction: 'Individual',
-                    eventLabel: i.toString(),
-                    eventValue: (document.getElementById(i.toString()).checked ? 1 : 0)
-                });
-            }
+            // for (i = 1; i < 100; i++) {
+            //     ga('send', {
+            //         hitType: 'event',
+            //         eventCategory: 'Score',
+            //         eventAction: 'Individual',
+            //         eventLabel: i.toString(),
+            //         eventValue: (document.getElementById(i.toString()).checked ? 1 : 0)
+            //     });
+            // }
 
             // Shows the score in the h1
             $('#score').html(purity);
