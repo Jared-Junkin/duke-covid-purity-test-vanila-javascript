@@ -115,6 +115,13 @@
             padding:0px;
             margin:0px;
         }
+        p{
+            font-size: 100%;
+            font-weight: bold;
+            color: black;
+            padding: 0px;
+            margin: 0px;
+        }
         
         .button {
             text-align: center;
@@ -152,6 +159,8 @@
         <div style="display: none;" id = "toShow">
             <h2 id="test">Your score:</h2>
             <h1 id="score"></h1>
+            <h2 id="test2"></h2>
+            <p id="group"></p>
             <br/>
             <input onclick="doRefresh()" class="button" id="goBack" type="submit" value="Round 2!">
         </div> <!-- id = toShow -->
@@ -190,6 +199,34 @@
 
             // Shows the score in the h1
             $('#score').html(purity);
+            var text;
+            var groupWork;
+            if (purity >= 90){
+                text = "Y'all either didn't fill this out or haven't left your house since March"
+                groupWork = "Your group: 90-100"
+            }
+            if (purity >= 80 && purity < 90){
+                text = "Dr. Fauci's Daddygang"
+                groupWork = "Your group: 80-90"
+            }
+            if (purity >= 70 && purity < 80){
+                purity = "Yes Covid is dangerous but also life is short"
+                groupWork = "Your group: 70-80"
+            }
+            if(purity >= 60 && purity < 70){
+                text = "Careful-ish"
+                groupWork = "Your group: 60-70"
+            }
+            if(purity >= 50 && purity < 60){
+                text = "Django Unchained aka. Florida Man post-quarantine"
+                groupWork = "Your group: 50-60"
+            }
+            if(purity < 50){
+                text = "Sexually liberated Republicans"
+                groupWork = "Your group: <50"
+            }
+            $('#test2').html(groupWork)
+            $('#group').html(text)
             
             // Shows the score and hides the checks
             $("#toShow").show();
