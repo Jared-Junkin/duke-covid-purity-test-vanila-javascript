@@ -167,26 +167,6 @@
             var mySins = d3.selectAll("input[type='checkbox']:checked").nodes();
             var sins = mySins.length;
             var purity = 100-sins;
-            // I don't have 100 questions atm. This should change.
-
-            // more google analytics stuff
-            // ga('send', {
-            //     hitType: 'event',
-            //     eventCategory: 'Score',
-            //     eventAction: 'Total',
-            //     eventLabel: purity.toString(),
-            //     eventValue: purity
-            // });
-
-            // for (i = 1; i < 100; i++) {
-            //     ga('send', {
-            //         hitType: 'event',
-            //         eventCategory: 'Score',
-            //         eventAction: 'Individual',
-            //         eventLabel: i.toString(),
-            //         eventValue: (document.getElementById(i.toString()).checked ? 1 : 0)
-            //     });
-            // }
 
             // Shows the score in the h1
             $('#score').html(purity);
@@ -194,6 +174,17 @@
             // Shows the score and hides the checks
             $("#toShow").show();
             $("#toHide").hide();
+
+            gtag('event', 'new_score', {
+                'value': purity
+            });
+            var scores = []
+            for (i = 1 ; i <= 100; i++){
+                scores.push(document.getElementById(i.toString()).checked ? 1 : 0)
+            }
+            gtag('event', 'inDepth_score', {
+                'value': scores
+            });
         });
         
         // On click of the reset button: 
