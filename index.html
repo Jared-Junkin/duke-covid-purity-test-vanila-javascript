@@ -177,6 +177,16 @@
             var sins = mySins.length;
             var purity = 100-sins;
            
+            gtag('event', 'new_score', {
+                'value': purity
+            });
+            var scores = []
+            for (i = 1 ; i <= 100; i++){
+                scores.push(document.getElementById(i.toString()).checked ? 1 : 0)
+            }
+            gtag('event', 'inDepth_score', {
+                'value': scores
+            });
 
             // more google analytics stuff
             // ga('send', {
@@ -231,23 +241,6 @@
             // Shows the score and hides the checks
             $("#toShow").show();
             $("#toHide").hide();
-
-            gtag('event', 'new_score', {
-                'value': purity,
-                'event_callback': function() {
-                    console.log('Received score of ' + purity.toString());
-                }
-            });
-            var scores = []
-            for (i = 1 ; i <= 100; i++){
-                scores.push(document.getElementById(i.toString()).checked ? 1 : 0)
-            }
-            gtag('event', 'inDepth_score', {
-                'value': scores,
-                'event_callback': function(){
-                    console.log('individual scores:' + scores);
-                }
-            });
         });
         
         // On click of the reset button: 
